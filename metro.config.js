@@ -1,7 +1,13 @@
 // metro.config.js
-module.exports = {
-  resolver: {
-    sourceExts: ["js", "jsx", "json", "ts", "tsx", "cjs"],
-    assetExts: ["glb", "gltf", "mtl", "obj", "png", "jpg"],
-  },
-};
+
+const { getDefaultConfig } = require("expo/metro-config");
+
+const config = getDefaultConfig(__dirname);
+
+config.resolver.assetExts.push(
+  // Adds support for `.db` files for SQLite databases
+  "mtl",
+  "obj"
+);
+
+module.exports = config;
