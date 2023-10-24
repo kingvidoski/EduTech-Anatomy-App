@@ -8,13 +8,14 @@ const OnBoardingSwap = ({ step }) => {
       return (
         <View className="">
           <Musclesvg />
-          <Text className="w-[199px] text-sm text-blackColor font-poppins font-normal text-center mx-auto mt-[19px]">
+          <Text className="w-[199px] text-sm text-bgBlack font-poppins font-normal text-center mx-auto mt-[19px]">
             Learn, Experience
-            <Text className="text-sm text-blueColor font-poppinsBold font-bold">
+            <Text className="text-sm text-bgBlack font-poppinsBold font-bold">
               {" "}
               3D{" "}
             </Text>
-            virtual reality
+            with {"\n"}
+            <Text className="block">virtual reality</Text>
           </Text>
         </View>
       );
@@ -24,8 +25,9 @@ const OnBoardingSwap = ({ step }) => {
       return (
         <View className="">
           <Musclesvg2 />
-          <Text className="w-[199px] text-sm text-blackColor font-poppins font-normal text-center mx-auto mt-[19px]">
-            Get all lecture note on human anatomy
+          <Text className="w-[199px] text-sm text-bgBlack font-poppins font-normal text-center mx-auto mt-[19px]">
+            Get all lecture note on {"\n"}
+            <Text className="font-bold">HUMAN ANATOMY</Text>
           </Text>
         </View>
       );

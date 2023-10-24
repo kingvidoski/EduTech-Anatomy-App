@@ -7,7 +7,12 @@ module.exports = {
     // './navigator/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bgBlack: "#1E1E1E",
+        bgWhite: "#fff",
+      },
+    },
   },
   plugins: [],
 };

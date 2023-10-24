@@ -1,0 +1,13 @@
+export { default as SplashSkull } from "../assets/svg/SplashSkull";
+export { default as SplashVector } from "../assets/svg/SplashVector";
+export { default as SplashVector2 } from "../assets/svg/SplashVector2";
+export { default as Tag } from "../assets/svg/Tag";
+export { default as OnBoardingSwap } from "./OnBoardingSwap";
+export { default as Musclesvg } from "../assets/svg/Musclesvg";
+export { default as Musclesvg2 } from "../assets/svg/Musclesvg2";
+export { default as Musclesvg3 } from "../assets/svg/Musclesvg3";
+export { default as HomescreenBg } from "../assets/svg/Homescreen";
+export { default as Logo } from "../assets/svg/Logo";
+export { default as QuizIcon } from "./QuizIcon";
+export { default as Book } from "../assets/svg/Book";
+export { default as Background } from "./Background";

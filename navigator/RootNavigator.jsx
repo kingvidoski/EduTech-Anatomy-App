@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen, Model, Onboarding, SplashScreen } from "../Screens";
+import { HomeScreen, Onboarding, SplashScreen } from "../Screens";
 import TabNavigator from "./TabNavigator";
 
 const RootStack = createNativeStackNavigator();
@@ -23,9 +23,9 @@ const RootNavigator = () => {
         <RootStack.Screen name="Main" component={HomeScreen} />
       </RootStack.Group>
 
-      <RootStack.Group>
+      {/* <RootStack.Group>
         <RootStack.Screen name="Models" component={Model} />
-      </RootStack.Group>
+      </RootStack.Group> */}
 
       <RootStack.Group>
         <RootStack.Screen name="Semester" component={TabNavigator} />
