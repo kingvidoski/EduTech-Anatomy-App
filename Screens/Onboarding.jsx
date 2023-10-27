@@ -78,7 +78,7 @@ const Onboarding = () => {
 
             <TouchableOpacity
               className="w-full pt-3 pb-[14px] rounded shadow-sm items-center"
-              onPress={[setSkip]}
+              onPress={() => [setSkip(), setStep(3)]}
             >
               <Text className="text-sm text-blackColor font-poppins font-normal">
                 Skip

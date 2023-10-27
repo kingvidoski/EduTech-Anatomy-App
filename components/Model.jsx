@@ -1,34 +1,18 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import {
-  Canvas,
-  extend,
-  useFrame,
-  useLoader,
-  useThree,
-} from "@react-three/fiber";
+import React, { useLayoutEffect, useRef, useState } from "react";
+import { Canvas, useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { TextureLoader } from "expo-three";
 import { Suspense } from "react";
-import {
-  GestureHandlerRootView,
-  PanGestureHandler,
-  State,
-} from "react-native-gesture-handler";
-extend({ PanGestureHandler });
 
-function Model(props) {
-  const material = useLoader(MTLLoader, require("../models/3DModel.mtl"));
-  const [normal] = useLoader(TextureLoader, [require("../models/3DModel.jpg")]);
+function Model({ moveCamera, obj: object, jpg, mtl }) {
+  const material = useLoader(MTLLoader, mtl);
+  const [normal] = useLoader(TextureLoader, [jpg]);
 
-  const obj = useLoader(
-    OBJLoader,
-    require("../models/model1.obj"),
-    (loader) => {
-      material.preload();
-      loader.setMaterials(material);
-    }
-  );
+  const obj = useLoader(OBJLoader, object, (loader) => {
+    material.preload();
+    loader.setMaterials(material);
+  });
 
   useLayoutEffect(() => {
     obj.traverse((child) => {
@@ -40,13 +24,7 @@ function Model(props) {
   }, [obj]);
 
   const meshRef = useRef();
-  const rotationSpeed = 70; // Adjust this factor to control the rotation speed
-
-  // useFrame((state, delta) => {
-  //     meshRef.current.rotation.y += delta;
-  //     meshRef.current.rotation.x += delta;
-  // });
-  const [previousPointer, setPreviousPointer] = useState({ x: 0, y: 0 });
+  const rotationSpeed = 70;
 
   const onPointerMove = (event) => {
     if (event.nativeEvent.changedTouches.length === 1) {
@@ -54,29 +32,18 @@ function Model(props) {
       const dx = touch.locationX;
       const dy = touch.locationY;
 
-      props.moveCamera(dx, dy);
-
-      setPreviousPointer({
-        x: touch.locationX,
-        y: touch.locationY,
-      });
+      moveCamera(dx, dy);
 
       meshRef.current.rotation.y += (dy * Math.PI * rotationSpeed) / 520;
       meshRef.current.rotation.x += (dx * Math.PI * rotationSpeed) / 520;
 
       console.log((dy * Math.PI * rotationSpeed) / 320);
-
-      // // Capture delta movement for smoother rotation
       meshRef.current.rotation.x += (dx * Math.PI * rotationSpeed) / 520;
       meshRef.current.rotation.y += (dy * Math.PI * rotationSpeed) / 520;
-      //   meshRef.current.rotation.y += dx * rotationSpeed;
-      //   meshRef.current.rotation.x += dy * rotationSpeed;
     }
   };
 
   return (
-    // <panGestureHandler>
-    //   </panGestureHandler>
     <mesh
       ref={meshRef}
       rotation={[0.5, -0.2, 0]}
@@ -88,8 +55,8 @@ function Model(props) {
   );
 }
 
-export default function ModelView() {
-  const [cameraPosition, setCameraPosition] = useState([0, 0, 30]);
+export default function ModelView({ zoom, jpg, mtl, obj }) {
+  const [cameraPosition, setCameraPosition] = useState([0, 0, zoom]);
 
   const moveCamera = (dx, dy) => {
     setCameraPosition((prevPosition) => [
@@ -104,7 +71,7 @@ export default function ModelView() {
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Suspense>
-        <Model moveCamera={moveCamera} />
+        <Model moveCamera={moveCamera} jpg={jpg} obj={obj} mtl={mtl} />
       </Suspense>
     </Canvas>
   );

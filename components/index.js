@@ -11,3 +11,4 @@ export { default as Logo } from "../assets/svg/Logo";
 export { default as QuizIcon } from "./QuizIcon";
 export { default as Book } from "../assets/svg/Book";
 export { default as Background } from "./Background";
+export { default as ModelView } from "./Model";

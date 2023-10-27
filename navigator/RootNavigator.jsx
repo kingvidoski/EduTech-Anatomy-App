@@ -1,5 +1,16 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen, Onboarding, SplashScreen } from "../Screens";
+import {
+  AddNoteScreen,
+  HomeScreen,
+  ModelViewer,
+  NoteLevel,
+  NoteOutline,
+  NoteScreen,
+  Onboarding,
+  SelectModel,
+  SplashScreen,
+  WriteNote,
+} from "../Screens";
 import TabNavigator from "./TabNavigator";
 
 const RootStack = createNativeStackNavigator();
@@ -23,12 +34,36 @@ const RootNavigator = () => {
         <RootStack.Screen name="Main" component={HomeScreen} />
       </RootStack.Group>
 
-      {/* <RootStack.Group>
-        <RootStack.Screen name="Models" component={Model} />
-      </RootStack.Group> */}
+      <RootStack.Group>
+        <RootStack.Screen name="NoteLevel" component={NoteLevel} />
+      </RootStack.Group>
 
       <RootStack.Group>
         <RootStack.Screen name="Semester" component={TabNavigator} />
+      </RootStack.Group>
+
+      <RootStack.Group>
+        <RootStack.Screen name="NoteOutline" component={NoteOutline} />
+      </RootStack.Group>
+
+      <RootStack.Group>
+        <RootStack.Screen name="NoteScreen" component={NoteScreen} />
+      </RootStack.Group>
+
+      <RootStack.Group>
+        <RootStack.Screen name="AddNote" component={AddNoteScreen} />
+      </RootStack.Group>
+
+      <RootStack.Group>
+        <RootStack.Screen name="WriteNote" component={WriteNote} />
+      </RootStack.Group>
+
+      <RootStack.Group>
+        <RootStack.Screen name="SelectModel" component={SelectModel} />
+      </RootStack.Group>
+
+      <RootStack.Group>
+        <RootStack.Screen name="ModelViewer" component={ModelViewer} />
       </RootStack.Group>
     </RootStack.Navigator>
   );
